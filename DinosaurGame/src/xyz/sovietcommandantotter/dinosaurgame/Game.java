@@ -16,11 +16,6 @@ public class Game {
 		
 		
 		
-		
-		
-		
-		
-		
 		window.setVisible(true);
 	}
 }
