@@ -2,15 +2,15 @@ package xyz.sovietcommandantotter.dinosaurgame;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import javax.imageio.ImageIO;
+import xyz.sovietcommandantotter.dinosaurgame.resources.graphics.*;
 
 public class Background {
 
-	private static final String backgroundImagePath = "background_extended";
+	private static final String backgroundImagePath = "src/xyz/sovietcommandantotter/dinosaurgame/resources/graphics/background_extended.png";
 	private BufferedImage background;
-
+	
 	private int backgroundX;
 	private int backgroundY;
 
@@ -32,7 +32,7 @@ public class Background {
 	public void drawBackground(Graphics window) {
 		window.drawImage(background, getXPos(), getYPos(), background.getWidth(), background.getHeight(), null);
 		this.backgroundX -= 5;
-		if (this.backgroundX <= 1 * background.getWidth()) {
+		if (this.backgroundX <= -1 * background.getWidth()) {
 			this.backgroundX = this.backgroundX + background.getWidth() * 2;
 		}
 	}

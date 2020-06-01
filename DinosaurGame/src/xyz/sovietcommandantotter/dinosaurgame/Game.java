@@ -1,5 +1,9 @@
 package xyz.sovietcommandantotter.dinosaurgame;
 
+import java.awt.Component;
+
+
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -12,15 +16,23 @@ public class Game {
 
 	public static JFrame window = new JFrame(APPLICATION_NAME);
 	public static Cactus cactus = new Cactus();
-
+	public static ScrollingBackground background = new ScrollingBackground();
+	public static JLabel testCactus = new JLabel("cactus");
 	
 	public static void main(String[] args) {
 		window.setSize(NORMAL_WIDTH, NORMAL_HEIGHT);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setLayout(null);
-
-		window.add(cactus);
-
+		
+		
+		//((Component)background).setFocusable(true);
+		window.add(background);
+		background.setVisible(true);
+		//window.add(cactus);
+		
+		//testCactus.setBounds(150, 150, 150, 150);
+		//window.add(testCactus);
+		
 		window.setVisible(true);
+		
 	}
 }
