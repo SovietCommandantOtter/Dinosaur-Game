@@ -16,9 +16,6 @@ public class Game {
 
 	public static JFrame window = new JFrame(APPLICATION_NAME);
 	
-	private static ImageIcon cactusImage = new ImageIcon("src/xyz/sovietcommandantotter/dinosaurgame/resources/graphics/small_cactus.png");
-	private static JLabel cactusLabel = new JLabel(cactusImage);
-	
 	private static Cactus cactus = new Cactus(window);
 	
 	public static void main(String[] args) {
@@ -27,11 +24,6 @@ public class Game {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
 		window.setResizable(false);
-		
-		
-		//window.add(cactusLabel);
-		//cactusLabel.setLocation(500, 50);
-		//cactusLabel.setSize(cactusImage.getIconWidth(), cactusImage.getIconHeight());
 		window.setVisible(true);
 		cactus.run();
 		
