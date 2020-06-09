@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import xyz.sovietcommandantotter.dinosaurgame.threads.CactusThread;
+
 
 public class Game {
 	private static final String APPLICATION_NAME = "Jumpy Dinosaur";
@@ -16,7 +18,7 @@ public class Game {
 
 	public static JFrame window = new JFrame(APPLICATION_NAME);
 	
-	private static Cactus cactus = new Cactus(window);
+	private static CactusThread cactus = new CactusThread(window);
 	
 	public static void main(String[] args) {
 		
