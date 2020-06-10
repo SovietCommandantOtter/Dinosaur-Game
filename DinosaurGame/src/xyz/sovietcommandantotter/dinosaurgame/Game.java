@@ -1,36 +1,43 @@
+
 package xyz.sovietcommandantotter.dinosaurgame;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
+import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
+import xyz.sovietcommandantotter.dinosaurgame.elements.LargeCactus;
+import xyz.sovietcommandantotter.dinosaurgame.elements.SmallCactus;
+import xyz.sovietcommandantotter.dinosaurgame.interfaces.Cactus;
 import xyz.sovietcommandantotter.dinosaurgame.threads.CactusThread;
-
 
 public class Game {
 	private static final String APPLICATION_NAME = "Jumpy Dinosaur";
-	private static final int NORMAL_WIDTH = 960;
-	private static final int NORMAL_HEIGHT = 300;
+	public static final int NORMAL_WIDTH = 960;
+	public static final int NORMAL_HEIGHT = 540;
+	public static final int CANVAS_WIDTH = 960;
+	public static final int CANVAS_HEIGHT = 505;
 
 	public static JFrame window = new JFrame(APPLICATION_NAME);
-	
-	private static CactusThread cactus = new CactusThread(window);
-	
+
+	private static CactusThread cactusThread;
+
+	public static ArrayList<Cactus> cactusList = new ArrayList<Cactus>();
+
 	public static void main(String[] args) {
-		
+
+		cactusList.add(new SmallCactus(900, (CANVAS_HEIGHT - 104)));
+		cactusList.add(new LargeCactus(1000, (CANVAS_HEIGHT - 176)));
+
 		window.setSize(NORMAL_WIDTH, NORMAL_HEIGHT);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
+		window.setLayout(null);
 		window.setResizable(false);
+
+		cactusThread = new CactusThread(window, cactusList);
+
 		window.setVisible(true);
-		cactus.run();
-		
-		
-		
+		cactusThread.run();
 
 	}
 }

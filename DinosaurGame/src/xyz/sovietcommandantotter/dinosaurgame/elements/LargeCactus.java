@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import xyz.sovietcommandantotter.dinosaurgame.interfaces.Cactus;
 
-public class SmallCactus implements Cactus {
+public class LargeCactus implements Cactus {
 
 	private int width;
 	private int height;
@@ -13,11 +13,11 @@ public class SmallCactus implements Cactus {
 	private int cactusXPos;
 	private int cactusYPos;
 
-	private static final String SMALL_CACTUS = "src/xyz/sovietcommandantotter/dinosaurgame/resources/small_cactus.png";
-	private static ImageIcon cactusImage = new ImageIcon(SMALL_CACTUS);
+	private static final String LARGE_CACTUS = "src/xyz/sovietcommandantotter/dinosaurgame/resources/large_cactus.png";
+	private static ImageIcon cactusImage = new ImageIcon(LARGE_CACTUS);
 	private static JLabel cactusLabel = new JLabel(cactusImage);
 
-	public SmallCactus(int xPos, int yPos) {
+	public LargeCactus(int xPos, int yPos) {
 		this.cactusXPos = xPos;
 		this.cactusYPos = yPos;
 		width = cactusImage.getIconWidth();
@@ -26,7 +26,7 @@ public class SmallCactus implements Cactus {
 
 	public String getType() {
 
-		return "Small";
+		return "Large";
 	}
 
 	public void moveCactus() {
@@ -56,6 +56,5 @@ public class SmallCactus implements Cactus {
 	}
 
 	public void setXPos(int xPos) {
-		this.cactusXPos = xPos;
 	}
 }
