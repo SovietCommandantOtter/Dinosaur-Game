@@ -9,6 +9,7 @@ public class SmallCactus implements Cactus {
 
 	private int width;
 	private int height;
+	private int initialX;
 
 	private int cactusXPos;
 	private int cactusYPos;
@@ -19,6 +20,7 @@ public class SmallCactus implements Cactus {
 
 	public SmallCactus(int xPos, int yPos) {
 		this.cactusXPos = xPos;
+		this.initialX = xPos;
 		this.cactusYPos = yPos;
 		width = cactusImage.getIconWidth();
 		height = cactusImage.getIconHeight();
@@ -56,6 +58,13 @@ public class SmallCactus implements Cactus {
 	}
 
 	public void setXPos(int xPos) {
-		this.cactusXPos = xPos;
+		cactusXPos = xPos;
+	}
+
+	public void setYPos(int yPos) {
+	}
+
+	public int getInitialX() {
+		return this.initialX;
 	}
 }

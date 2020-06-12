@@ -8,6 +8,8 @@ public interface Cactus {
 	public void moveCactus();
 	
 	public void setXPos(int xPos);
+	
+	public void setYPos(int yPos);
 
 	public JLabel getCactusImage();
 
@@ -15,6 +17,8 @@ public interface Cactus {
 
 	public int getHeight();
 
+	public int getInitialX();
+	
 	public int getX();
 
 	public int getY();

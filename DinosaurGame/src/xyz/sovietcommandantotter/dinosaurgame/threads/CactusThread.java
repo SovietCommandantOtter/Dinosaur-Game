@@ -7,8 +7,7 @@ import java.util.Timer;
 
 import javax.swing.JLabel;
 
-import xyz.sovietcommandantotter.dinosaurgame.Game;
-import xyz.sovietcommandantotter.dinosaurgame.elements.SmallCactus;
+import xyz.sovietcommandantotter.dinosaurgame.CactusFactory;
 import xyz.sovietcommandantotter.dinosaurgame.interfaces.Cactus;
 
 public class CactusThread implements Runnable {
@@ -19,24 +18,18 @@ public class CactusThread implements Runnable {
 			300, 350, 400, 450, 500
 	};
 	public static Timer cactusTimer = new Timer();
+	public static CactusFactory cactusFactory = new CactusFactory();
+	
+	protected int lastCactusX;
+	protected int lastCactusY;
+	protected int lastCactusWidth;
+	protected int lastCactusHeight;
 
-	public CactusThread(Window window, ArrayList<Cactus> cactusList) {
+	public CactusThread(Window window, ArrayList<Cactus> cactusList, CactusFactory cactusFactory) {
 		this.cactusWindow = window;
 		this.cactusList = cactusList;
 	}
 
-	public void generateCactus() {
-		/*for (int i = 0; i < cactusList.size(); i++) {
-			if (cactusList.get(i) == null) {
-				if (cactusList.get(i + 1) != null) {
-					cactusList.set(i, cactusList.get(i + 1));
-					cactusList.set(i + 1, null);
-				}
-				cactusList.set(i, new SmallCactus(1000, Game.CANVAS_HEIGHT - 176));
-			}
-		}
-		*/
-	}
 
 	public void drawCactus() {
 		for (int i = 0; i < cactusList.size(); i++) {
@@ -46,27 +39,32 @@ public class CactusThread implements Runnable {
 			cactusLabel.setLocation(tempCactus.getX(), tempCactus.getY());
 			if (cactusLabel.getX() > -300) {
 				cactusWindow.add(cactusLabel);
+				//cactusWindow.repaint();
 			}
 		}
 	}
 
 	public void moveCactus() {
+		int tempX = 0;
 		for (int i = 0; i < cactusList.size(); i++) {
 			Cactus tempCactus = cactusList.get(i);
 			tempCactus.moveCactus();
 			if (tempCactus.getX() < -300) {
 				cactusWindow.remove(cactusList.get(i).getCactusImage());
-				cactusList.remove(i);
+				tempX = tempCactus.getInitialX();
+				tempCactus.setXPos(tempX);
+				cactusList.set(i, tempCactus);
+				//cactusWindow.repaint();
 			}
 		}
 	}
 
 	public void run() {
-		generateCactus();
-		drawCactus();
+		//drawCactus();
 		while (true) {
-			moveCactus();
 			drawCactus();
+			moveCactus();
+			
 			cactusWindow.repaint();
 			try {
 				Thread.sleep(10);

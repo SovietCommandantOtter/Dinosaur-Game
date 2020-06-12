@@ -12,6 +12,7 @@ public class LargeCactus implements Cactus {
 
 	private int cactusXPos;
 	private int cactusYPos;
+	private int initialX;
 
 	private static final String LARGE_CACTUS = "src/xyz/sovietcommandantotter/dinosaurgame/resources/large_cactus.png";
 	private static ImageIcon cactusImage = new ImageIcon(LARGE_CACTUS);
@@ -19,6 +20,7 @@ public class LargeCactus implements Cactus {
 
 	public LargeCactus(int xPos, int yPos) {
 		this.cactusXPos = xPos;
+		this.initialX = xPos;
 		this.cactusYPos = yPos;
 		width = cactusImage.getIconWidth();
 		height = cactusImage.getIconHeight();
@@ -56,5 +58,13 @@ public class LargeCactus implements Cactus {
 	}
 
 	public void setXPos(int xPos) {
+		cactusXPos = xPos;
+	}
+
+	public void setYPos(int xPos) {
+	}
+
+	public int getInitialX() {
+		return this.initialX;
 	}
 }
