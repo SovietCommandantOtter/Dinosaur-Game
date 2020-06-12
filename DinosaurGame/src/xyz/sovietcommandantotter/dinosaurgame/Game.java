@@ -22,27 +22,24 @@ public class Game {
 	private static CactusThread cactusThread;
 
 	public static ArrayList<Cactus> cactusList = new ArrayList<Cactus>();
-	
-	public static CactusFactory cactusFactory = new CactusFactory();
 
 	public static void main(String[] args) {
 
-		cactusList.add(new SmallCactus(900, (CANVAS_HEIGHT - 104)));
-		cactusList.add(new LargeCactus(1000, (CANVAS_HEIGHT - 176)));
-		cactusList.add(new SmallCactus(1200, (CANVAS_HEIGHT - 104)));
-		cactusList.add(new LargeCactus(1654, (CANVAS_HEIGHT - 176)));
+		cactusList.add(new SmallCactus(900, (Game.CANVAS_HEIGHT - 104)));
+		cactusList.add(new LargeCactus(1000, (Game.CANVAS_HEIGHT - 176)));
+		cactusList.add(new SmallCactus(1200, (Game.CANVAS_HEIGHT - 104)));
+		cactusList.add(new LargeCactus(1654, (Game.CANVAS_HEIGHT - 176)));
 		
 		window.setSize(NORMAL_WIDTH, NORMAL_HEIGHT);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
 		window.setLayout(null);
 		window.setResizable(true);
-		window.setVisible(true);
-		cactusThread = new CactusThread(window, cactusList, cactusFactory);
+		
+		cactusThread = new CactusThread(window, cactusList);
 		
 		
-		
-		cactusThread.run();
-
+		 cactusThread.execute();
+		 window.setVisible(true);
 	}
 }

@@ -3,33 +3,26 @@ package xyz.sovietcommandantotter.dinosaurgame.threads;
 
 import java.awt.Window;
 import java.util.ArrayList;
-import java.util.Timer;
 
 import javax.swing.JLabel;
+import javax.swing.SwingWorker;
 
-import xyz.sovietcommandantotter.dinosaurgame.CactusFactory;
 import xyz.sovietcommandantotter.dinosaurgame.interfaces.Cactus;
 
-public class CactusThread implements Runnable {
+public class CactusThread extends SwingWorker<Object, String> {
 
 	Window cactusWindow;
 	ArrayList<Cactus> cactusList;
-	int cactusSpacing[] = {
-			300, 350, 400, 450, 500
-	};
-	public static Timer cactusTimer = new Timer();
-	public static CactusFactory cactusFactory = new CactusFactory();
-	
+
 	protected int lastCactusX;
 	protected int lastCactusY;
 	protected int lastCactusWidth;
 	protected int lastCactusHeight;
 
-	public CactusThread(Window window, ArrayList<Cactus> cactusList, CactusFactory cactusFactory) {
+	public CactusThread(Window window, ArrayList<Cactus> cactusList) {
 		this.cactusWindow = window;
 		this.cactusList = cactusList;
 	}
-
 
 	public void drawCactus() {
 		for (int i = 0; i < cactusList.size(); i++) {
@@ -37,10 +30,7 @@ public class CactusThread implements Runnable {
 			JLabel cactusLabel = tempCactus.getCactusImage();
 			cactusLabel.setSize(tempCactus.getWidth(), tempCactus.getHeight());
 			cactusLabel.setLocation(tempCactus.getX(), tempCactus.getY());
-			if (cactusLabel.getX() > -300) {
-				cactusWindow.add(cactusLabel);
-				//cactusWindow.repaint();
-			}
+			cactusWindow.add(cactusLabel);
 		}
 	}
 
@@ -49,22 +39,24 @@ public class CactusThread implements Runnable {
 		for (int i = 0; i < cactusList.size(); i++) {
 			Cactus tempCactus = cactusList.get(i);
 			tempCactus.moveCactus();
+
 			if (tempCactus.getX() < -300) {
-				cactusWindow.remove(cactusList.get(i).getCactusImage());
+				//cactusWindow.remove(cactusList.get(i).getCactusImage());
 				tempX = tempCactus.getInitialX();
 				tempCactus.setXPos(tempX);
 				cactusList.set(i, tempCactus);
-				//cactusWindow.repaint();
+				cactusWindow.repaint();
 			}
+
 		}
 	}
 
-	public void run() {
-		//drawCactus();
+	@Override
+	protected Object doInBackground() throws Exception {
 		while (true) {
-			drawCactus();
+
 			moveCactus();
-			
+			drawCactus();
 			cactusWindow.repaint();
 			try {
 				Thread.sleep(10);
@@ -72,6 +64,7 @@ public class CactusThread implements Runnable {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 }

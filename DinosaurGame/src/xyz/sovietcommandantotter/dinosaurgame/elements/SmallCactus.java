@@ -15,8 +15,8 @@ public class SmallCactus implements Cactus {
 	private int cactusYPos;
 
 	private static final String SMALL_CACTUS = "src/xyz/sovietcommandantotter/dinosaurgame/resources/small_cactus.png";
-	private static ImageIcon cactusImage = new ImageIcon(SMALL_CACTUS);
-	private static JLabel cactusLabel = new JLabel(cactusImage);
+	private ImageIcon cactusImage = new ImageIcon(SMALL_CACTUS);
+	private JLabel cactusLabel = new JLabel(cactusImage);
 
 	public SmallCactus(int xPos, int yPos) {
 		this.cactusXPos = xPos;
@@ -65,6 +65,6 @@ public class SmallCactus implements Cactus {
 	}
 
 	public int getInitialX() {
-		return this.initialX;
+		return initialX;
 	}
 }
